@@ -1,0 +1,77 @@
+<html>
+<head>
+     <meta charset="UTF-8">
+    <title>Erolibrary</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+        $("button").click(function(){
+            var img_name=$(this).attr("id");
+            var img_path=$(this).attr("data-src");
+            $.ajax({
+                url: "ajax_img",
+                type: "POST",
+                data: {"IMG_NAME": img_name, "IMG_PATH": img_path},
+                success: function (result) {
+                    $("img").attr("src", result.data)
+                    }
+                });
+                // alert(img_path+"/"+img_name)
+        })
+    })
+</script>
+</head>
+<body>
+    <h3>显示图片和属性</h3>
+<table border="1">
+    <tr>
+        <td>
+            <div style="height:480;width:720">
+                <img src="data:;base64,{{ img_stream }}" , alt="img" , id="img1" , style="max-height:100%;max-width:100%;overflow:hidden;">
+            </div>
+
+        </td>
+        <td>
+            图片名称：{{img_list[0]}}
+            <br>
+            ero: <input type="text" name="ero" value="{{ero}}">
+            <br>
+
+        </td>
+    </tr>
+</table>
+      <hr/>
+      <table id="list">
+         <thead>
+            <tr>
+                <th>img_name</th>
+                <th>path_name</th>
+                <th>ero</th>
+                <th>bare</th>
+                <th>hentai</th>
+                <th>handsome</th>
+                <th>sex</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for img in img_list %}
+               <tr>
+                  <td>{{ img.img_name }}</td>
+                  <td>{{ img.path_name }}</td>
+                  <td>{{ img.ero }}</td>
+                   <td>{{ img.bare }}</td>
+                  <td>{{ img.hentai}}</td>
+                   <td>{{ img.handsome }}</td>
+                   <td>{{ img.sex }}</td>
+                   <td><button id="{{ img.img_name }}" , data-src="{{ img.path_name }}">select</button></td>
+               </tr>
+         {% endfor %}
+         </tbody>
+      </table>
+
+
+</body>
+
+
+</html>
