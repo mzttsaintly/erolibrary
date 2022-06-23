@@ -1,0 +1,30 @@
+<html>
+<table id="list">
+         <thead>
+            <tr>
+                <th>img_name</th>
+                <th>path_name</th>
+                <th>ero</th>
+                <th>bare</th>
+                <th>hentai</th>
+                <th>handsome</th>
+                <th>sex</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for img in img_list %}
+               <tr>
+                  <td>{{ img.img_name }}</td>
+                  <td>{{ img.path_name }}</td>
+                  <td>{{ img.ero }}</td>
+                   <td>{{ img.bare }}</td>
+                  <td>{{ img.hentai}}</td>
+                   <td>{{ img.handsome }}</td>
+                   <td>{{ img.sex }}</td>
+                   <td><button id="{{ img.img_name }}" , data-src="{{ img.path_name }}">select</button></td>
+               </tr>
+         {% endfor %}
+         </tbody>
+      </table>
+</html>

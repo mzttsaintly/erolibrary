@@ -5,7 +5,7 @@
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-        $("button").click(function(){
+        $(".img").click(function(){
             var img_name=$(this).attr("id");
             var img_path=$(this).attr("data-src");
             $.ajax({
@@ -13,12 +13,19 @@ $(document).ready(function(){
                 type: "POST",
                 data: {"IMG_NAME": img_name, "IMG_PATH": img_path},
                 success: function (result) {
-                    $("img").attr("src", result.data)
+                    $("img").attr("src", result.data);
+                    $("#img_name").attr("value", img_name);
+                    $("#ero_input").attr("value", result.ero);
+                    $("#bare_input").attr("value", result.bare);
+                    $("#hentai_input").attr("value", result.hentai);
+                    $("#handsome_input").attr("value", result.handsome);
+                    $("#sex_input").attr("value", result.sex);
                     }
                 });
-                // alert(img_path+"/"+img_name)
-        })
-    })
+        });
+
+    });
+
 </script>
 </head>
 <body>
@@ -32,16 +39,86 @@ $(document).ready(function(){
 
         </td>
         <td>
-            图片名称：{{img_list[0]}}
-            <br>
-            ero: <input type="text" name="ero" value="{{ero}}">
-            <br>
-
+            <form name="input" action="/change" method="POST">
+                <p>图片文件名: <input id="img_name" type="text" name="img_name" readonly="readonly" value=""></p>
+                <p>ero:</p>
+                <p>
+                    <input id="ero_input" type="text" readonly="readonly" size="2">
+                    <input type="radio" name="ero" value="1">1
+                    <input type="radio" name="ero" value="2">2
+                    <input type="radio" name="ero" value="3">3
+                    <input type="radio" name="ero" value="4">4
+                    <input type="radio" name="ero" value="5">5
+                    <input type="radio" name="ero" value="6">6
+                    <input type="radio" name="ero" value="7">7
+                    <input type="radio" name="ero" value="8">8
+                    <input type="radio" name="ero" value="9">9
+                    <input type="radio" name="ero" value="10">10
+                </p>
+                <p>bare:</p>
+                <p>
+                    <input id="bare_input" type="text" readonly="readonly" size="2">
+                    <input type="radio" name="bare" value="1">1
+                    <input type="radio" name="bare" value="2">2
+                    <input type="radio" name="bare" value="3">3
+                    <input type="radio" name="bare" value="4">4
+                    <input type="radio" name="bare" value="5">5
+                    <input type="radio" name="bare" value="6">6
+                    <input type="radio" name="bare" value="7">7
+                    <input type="radio" name="bare" value="8">8
+                    <input type="radio" name="bare" value="9">9
+                    <input type="radio" name="bare" value="10">10
+                </p>
+                <p>hentai:</p>
+                <p>
+                    <input id="hentai_input" type="text" readonly="readonly" size="2">
+                    <input type="radio" name="hentai" value="1">1
+                    <input type="radio" name="hentai" value="2">2
+                    <input type="radio" name="hentai" value="3">3
+                    <input type="radio" name="hentai" value="4">4
+                    <input type="radio" name="hentai" value="5">5
+                    <input type="radio" name="hentai" value="6">6
+                    <input type="radio" name="hentai" value="7">7
+                    <input type="radio" name="hentai" value="8">8
+                    <input type="radio" name="hentai" value="9">9
+                    <input type="radio" name="hentai" value="10">10
+                </p>
+                <p>handsome:</p>
+                <p>
+                    <input id="handsome_input" type="text" readonly="readonly" size="2">
+                    <input type="radio" name="handsome" value="1">1
+                    <input type="radio" name="handsome" value="2">2
+                    <input type="radio" name="handsome" value="3">3
+                    <input type="radio" name="handsome" value="4">4
+                    <input type="radio" name="handsome" value="5">5
+                    <input type="radio" name="handsome" value="6">6
+                    <input type="radio" name="handsome" value="7">7
+                    <input type="radio" name="handsome" value="8">8
+                    <input type="radio" name="handsome" value="9">9
+                    <input type="radio" name="handsome" value="10">10
+                </p>
+                <p>sex:</p>
+                <p>
+                    <input id="sex_input" type="text" readonly="readonly" size="2">
+                    <input type="radio" name="sex" value="1">1
+                    <input type="radio" name="sex" value="2">2
+                    <input type="radio" name="sex" value="3">3
+                    <input type="radio" name="sex" value="4">4
+                    <input type="radio" name="sex" value="5">5
+                    <input type="radio" name="sex" value="6">6
+                    <input type="radio" name="sex" value="7">7
+                    <input type="radio" name="sex" value="8">8
+                    <input type="radio" name="sex" value="9">9
+                    <input type="radio" name="sex" value="10">10
+                </p>
+                <p><button type="submit">submit</button></p>
+            </form>
         </td>
     </tr>
 </table>
       <hr/>
-      <table id="list">
+    <div id="list_div" file="list.html">
+        <table id="list">
          <thead>
             <tr>
                 <th>img_name</th>
@@ -64,14 +141,14 @@ $(document).ready(function(){
                   <td>{{ img.hentai}}</td>
                    <td>{{ img.handsome }}</td>
                    <td>{{ img.sex }}</td>
-                   <td><button id="{{ img.img_name }}" , data-src="{{ img.path_name }}">select</button></td>
+                   <td><button id="{{ img.img_name }}" , data-src="{{ img.path_name }}" , class="img">select</button></td>
                </tr>
          {% endfor %}
          </tbody>
       </table>
+    </div>
+
 
 
 </body>
-
-
 </html>

@@ -131,3 +131,4 @@ dmypy.json
 /.idea
 /warfarin.db
 /test_img/
+testcode.py
