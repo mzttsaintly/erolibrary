@@ -132,3 +132,10 @@ dmypy.json
 /warfarin.db
 /test_img/
 testcode.py
+
+# Vue
+./vue-project/
+vue-project/
+/node_modules
+package-lock.json
+package.json

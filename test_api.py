@@ -1,7 +1,5 @@
 import os
 
 from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
